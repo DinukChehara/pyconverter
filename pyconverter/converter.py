@@ -16,7 +16,7 @@ class Converter():
             'ounces' : 0.035274
         }
 
-    def convert_length(self, value : int, unit_from : str, unit_to: str) -> int: 
+    def convert_length(self, value : float, unit_from : str, unit_to: str) -> float: 
 
         if unit_from not in self.length_factors or unit_to not in self.length_factors:
             return "UnsupportedUnit"
@@ -26,7 +26,7 @@ class Converter():
             
             return meters * self.lenght_factors[unit_to]
         
-    def convert_weight(self, value : int, unit_from : str, unit_to : str) -> int:
+    def convert_weight(self, value : float, unit_from : str, unit_to : str) -> float:
 
         if unit_from not in self.weight_factors or unit_to not in self.weight_factors:
             return "UnsupportedUnit"
@@ -36,4 +36,26 @@ class Converter():
             grams = value / self.weight_factors[unit_from]
             
             return grams * self.weight_factors[unit_to]
-    
+        
+    def convert_temperature(self, value: float, unit_from: str, unit_to: str) -> float:
+        if unit_from == unit_to:
+            return value
+        
+        if unit_from == 'C':
+            if unit_to == 'F':
+                return (value * 9/5) + 32
+            elif unit_to == 'K':
+                return value + 273.15
+        elif unit_from == 'F':
+            if unit_to == 'C':
+                return (value - 32) * 5/9
+            elif unit_to == 'K':
+                return (value - 32) * 5/9 + 273.15
+        elif unit_from == 'K':
+            if unit_to == 'C':
+                return value - 273.15
+            elif unit_to == 'F':
+                return (value - 273.15) * 9/5 + 32
+        
+        else:
+            return "UnsupportedUnit"
