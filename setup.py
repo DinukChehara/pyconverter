@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='pyconverter',
+    name='unitconverterpy',
     version='0.1.0',
     packages=find_packages(),
     description='A library for unit conversion between various measurement units',
